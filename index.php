@@ -2,11 +2,10 @@
  	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
 	include "$root/PHP/PacketManager.php";
 	$PM->includePacket("SESSION", "1.0");
+	$PM->includePacket("GLOBALS", "1.0");
 
-	if (!$SESSION->get("userId"))header("Location: /user/login.php?redirect=/PC/WLP");
+	if (!$SESSION->get("userId")) header("Location: " . $GLOBALS['UserDomainUrl'] . "/login?redirect=" . $GLOBALS['ProjectUrls']['WLP']);
 ?>
-
-
 
 
 <!DOCTYPE html>
@@ -20,7 +19,6 @@
 	</head>	
 	<body>
 		<div id="backgroundHolder"></div>
-
 		
 		<div id="PL_toggleButton" class="op en hide" onclick="client.action.playList.toggle()">
 			<img class="PLB_itemImg" src="images/folderIcon.png">
