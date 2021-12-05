@@ -1,6 +1,6 @@
 <?php
-	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
-	require_once "$root/PHP/PacketManager.php";
+	require_once __DIR__ . "/../getRoot.php";
+	require_once $Root . "/PHP/PacketManager.php";
 	$PM->includePacket("DB", "1.0");
 	$PM->includePacket("SESSION", "1.0");
 
@@ -89,6 +89,19 @@
 
 			if (isset($result[0])) return json_decode($result[0]["private_testList"], true);
 			return array();
+		}
+
+
+		public function getAllWordTrees() {
+			$result = $this->DB->execute("SELECT SL_wordList FROM WLP");
+			$results = [];
+			for ($i = 0; $i < sizeof($result); $i++)
+			{
+				$subResult = json_decode($result[$i]["SL_wordList"], true);
+				if (is_null($subResult) || !sizeof($subResult)) continue;
+				$results = array_merge($results, $subResult);
+			}
+			return $results;
 		}
 
 		public function getWordTree() {

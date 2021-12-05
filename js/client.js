@@ -140,7 +140,7 @@ function _client_page_change() {
     this.curTestId = parseInt(_id);
     
     client.page.open(5);
-  
+    
     MC.page.create.clearAllInputs();
     prepareChangeTest(_id);
   }
@@ -212,6 +212,7 @@ function _client_page_recents() {
     client.page.open(0);
     prepareRecents();
     Navigator.reset();
+    SL.WS.close();
   }
 
 
@@ -292,6 +293,7 @@ function _client_page_search() {
     client.page.open(0);
     prepareSearch();
     Navigator.reset();
+    SL.WS.close();
   }
 
 
@@ -361,6 +363,7 @@ function _client_page_folderContent() {
     client.page.open(0);
     prepareFolder(folder, _trial);
     Navigator.reset();
+    SL.WS.close();
 
     $("#FB_removeItemsFromFolderButton").fadeIn(1);
   }
@@ -500,6 +503,7 @@ function _client_page_results() {
     html.noteHolder.value = "Your result: " + overallScore
     
     client.page.open(4);
+    SL.WS.close();
     FB.setTitle("Results: " + title);
 
     //for some space at the bottom (aka for scrolling)

@@ -1,20 +1,16 @@
 <?php
- 	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
-	include "$root/PHP/PacketManager.php";
+	require_once __DIR__ . '/database/getRoot.php';
+	include $Root . "/PHP/PacketManager.php";
 	$PM->includePacket("SESSION", "1.0");
 	$PM->includePacket("GLOBALS", "1.0");
 
 	if (!$SESSION->get("userId")) header("Location: " . $GLOBALS['UserDomainUrl'] . "/login?redirect=" . $GLOBALS['ProjectUrls']['WLP']);
 ?>
-
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta content='width=device-width, initial-scale=0.6, maximum-scale=0.7, user-scalable=0' name='viewport'/>
 		<link rel="stylesheet" type="text/css" href="main.css">
-		<script type="text/javascript" src="/JS/jQuery.js" asy nc></script>
-		<script type="text/javascript" src="/JS/request.js" asy nc></script>
 		<script src="js/main_min.js" async></script>
 	</head>	
 	<body>
@@ -23,7 +19,7 @@
 		<div id="PL_toggleButton" class="op en hide" onclick="client.action.playList.toggle()">
 			<img class="PLB_itemImg" src="images/folderIcon.png">
 			<div class="textHolder"></div>
-			<img class="directionButton" src="images/playList_arrowRight.png">
+			<img class="directionBstton" src="images/playList_arrowRight.png">
 		</div>
 
 		<div id="playlistBar" class="hide">
@@ -83,7 +79,7 @@
 		<div id="topBar">
 			<div id="navigateBar">
 				<div class="TB_item" onclick="client.page.recents.open()">
-					<img class="TB_item_icon" src="/pictures/trippleEquals.svg">
+					<img class="TB_item_icon" src="images/trippleEquals.svg">
 				</div>
 				<div class="TB_item" onclick="client.page.search.open()">
 					<img class="TB_item_icon" src="images/searchIcon.png">
@@ -112,7 +108,7 @@
 			<div id="functionBar">
 				<div id="functionBar_normalViewHolder">
 					<div class="FB TB_item FB_boxless" id="FB_openExtraOptionsViewButton" onclick="FB.openExtraOptionsView()">
-						<img class="TB_item_icon" src="/pictures/trippleEquals.svg">
+						<img class="TB_item_icon" src="images/trippleEquals.svg">
 					</div>
 
 					<div class="FB TB_item FB_boxless showByIndex0" onclick="Navigator.select.startPlayListWithSelectedItems()">
@@ -177,6 +173,10 @@
 					
 					<div class="FB TB_item FB_boxless showByIndex5 MC_page_changeButton" onclick="client.page.change.saveChanges()">
 						<a class="TB_item_text FB_loneText">Change</a>
+					</div>
+
+					<div class="FB TB_item FB_boxless showByIndex5" onclick="SL.WS.toggle() ">
+						<a class="TB_item_text FB_loneText">Auto-finish</a>
 					</div>
 				</div>
 
@@ -478,44 +478,6 @@
 			</div>
 		</div>
 
-
-
-
-
-		<script>
-			// temperarelly so things don't get cached
-
-			// let antiCache = Math.random() * 100000000;
-			// 	$.getScript("js/client.js?antiCache=" 			+ antiCache, function() {});
-			// 	$.getScript("js/server.js?antiCache=" 			+ antiCache, function() {});
-			// 	$.getScript("js/test.js?antiCache=" 			+ antiCache, function() {});
-			// 	$.getScript("js/smartLearning.js?antiCache="	+ antiCache, function() {});
-
-
-			// 				$.getScript("js/data.js?antiCache=" 			+ antiCache, function() {});//will be removed soon
-				
-			// $.getScript("js/playList.js?antiCache=" 		+ antiCache, function() {});
-
-
-			// $.getScript("js/app.js?antiCache=" 				+ antiCache, function() {});
-			// $.getScript("js/index.js?antiCache=" 			+ antiCache, function() {});
-
-		</script>
-		
-		<!-- <script src="js/main_min.js" async></script> -->
-<!-- 		<script src="js/client.js"></script>
-		<script src="js/server.js"></script>
-		<script src="js/test.js"></script>
-
-
-		<script src="js/data.js"></script>
-		<script src="js/smartLearning.js"></script>
-		
-		<script src="js/playList.js"></script>
-
-		<script src="js/app.js"></script>
-		<script src="js/index.js"></script>
- -->
 
 
 

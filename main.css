@@ -939,6 +939,7 @@ body {
 	position: relative;
 	height: 100%;
 	width: auto;
+	pointer-events: none;
 }
 
 .TB_item_text {
@@ -947,9 +948,11 @@ body {
 	left: 2px;
 	color: #ddd;
 	font-size: 20px;
+	pointer-events: none;
 }
 .TB_item_text.FB_loneText {
 	top: 0;
+	pointer-events: none;
 }
 
 

@@ -99,24 +99,14 @@ function _smartLearning() {
 			MC.makeSpaceOnRightSide(0);
 		}
 
-
-		this.addSuggestion = function(_string, _suggestion, _answer) {
-			if (!this.enabled) return;
-			let html = '<div class="modernFont WS_item_sItem optionStyle hide"></div>';
-			let prefIndex = document.getElementsByClassName("modernFont WS_item_sItem optionStyle").length;
-			this.html.listHolder.insertAdjacentHTML("beforeend", html);
-
-			html = document.getElementsByClassName("modernFont WS_item_sItem optionStyle")[prefIndex];
-
-			document.getElementsByClassName("modernFont WS_item_sItem optionStyle")[prefIndex].onclick = function () {SL.WS.clearSuggestions(); SL.WS.hideSuggestionMenu(); SL.WS.selectedInput.value = String(_suggestion)};
-			setTextToElement(html, String(_suggestion));
-			setTextToElement(document.getElementsByClassName("WS_item_sItem searchStyle")[0], _string);
-			var loopTimer = setTimeout("document.getElementsByClassName('modernFont WS_item_sItem optionStyle')[" + prefIndex + "].classList.remove('hide')", 1);
+		this.applyFirstSuggestion = function() {
+			if (!curSuggestionArray[0]) return;
+			applySuggestion(curSuggestionArray[0]["q"]);
 		}
 
-
-
+		let curSuggestionArray = [];
 		this.addSuggestionsByArray = function(_arr) {
+			curSuggestionArray = _arr;
 			if (!this.enabled) return;
 			this.clearSuggestions();
 			if (!_arr || _arr.length === 0) return this.hideSuggestionMenu();
@@ -127,6 +117,32 @@ function _smartLearning() {
 			  this.addSuggestion(_arr[i]["search"], _arr[i]["q"], _arr[i]["a"]);  
 			}
 		}
+
+		this.addSuggestion = function(_string, _suggestion, _answer) {
+			if (!this.enabled) return;
+			let html = '<div class="modernFont WS_item_sItem optionStyle hide"></div>';
+			let prefIndex = document.getElementsByClassName("modernFont WS_item_sItem optionStyle").length;
+			this.html.listHolder.insertAdjacentHTML("beforeend", html);
+
+			html = document.getElementsByClassName("modernFont WS_item_sItem optionStyle")[prefIndex];
+
+			document.getElementsByClassName("modernFont WS_item_sItem optionStyle")[prefIndex].onclick = function () {
+				applySuggestion(_suggestion);
+			};
+
+			setTextToElement(html, String(_suggestion));
+			setTextToElement(document.getElementsByClassName("WS_item_sItem searchStyle")[0], _string);
+			var loopTimer = setTimeout("document.getElementsByClassName('modernFont WS_item_sItem optionStyle')[" + prefIndex + "].classList.remove('hide')", 1);
+		}
+
+		function applySuggestion(_suggestion) {
+			SL.WS.clearSuggestions(); 
+			SL.WS.hideSuggestionMenu(); 
+			SL.WS.selectedInput.value = String(_suggestion);
+		}
+
+
+		
 
 		this.clearSuggestions = function() {this.html.listHolder.innerHTML = "";}
 		this.hideSuggestionMenu = function() {document.getElementById("SB_WSHolder").classList.add("hide")}

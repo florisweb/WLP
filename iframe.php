@@ -177,11 +177,11 @@
 			}
 		</style>
 
-		<link rel="shortcut icon" href="https://florisweb.tk/pictures/favicon.ico">
-		<title>WLP - Florisweb.tk (0.9.2)</title>
+		<link rel="shortcut icon" href="https://florisweb.dev/pictures/favicon.ico">
+		<title>WLP - florisweb.dev (0.9.2)</title>
 	</head>
 	<body>
-		<iframe src="https://florisweb.tk/PC/WLP" id="WLPIframe"></iframe>
+		<iframe src="https://florisweb.dev/PC/WLP" id="WLPIframe"></iframe>
 
 
 		<div id="darkenOverlay" class="hide">

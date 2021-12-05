@@ -191,7 +191,7 @@
 			
 		</style>
 
-		<title>WLP - Florisweb.tk</title>
+		<title>WLP - florisweb.dev</title>
 	</head>
 	<body>
 		<image src="images/createPage.png" id="WLPImg">
@@ -213,7 +213,7 @@
 					padding: 30px;
 				">
 					<div style="position: relative; width: 400px; margin: auto">
-						<a href="https://wlp.florisweb.tk">
+						<a href="https://wlp.florisweb.dev">
 							<div class="boxButton important" style="position: relative">
 								Start using WLP
 							</div>
@@ -235,7 +235,7 @@
 				<br>
 				<?php
 					// if (!isset($_SESSION["userId"])) 
-					echo '<br><br><a class="text">First things first, <br>In order to use WLP you\'ll have to have a Florisweb.tk account, <br> if you don\'t have one yet, create one:</a><br><br><a href="" onclick="window.open(\'https://florisweb.tk/user/register.php\')"><img src="images/registerIcon.png" style="width: 14%; height: auto; min-width: 100px"></a><br><br><br><br><a class="text">Secondly, we\'ll give you a short tour of the basics.</a>';
+					echo '<br><br><a class="text">First things first, <br>In order to use WLP you\'ll have to have a florisweb.dev account, <br> if you don\'t have one yet, create one:</a><br><br><a href="" onclick="window.open(\'https://florisweb.dev/user/register.php\')"><img src="images/registerIcon.png" style="width: 14%; height: auto; min-width: 100px"></a><br><br><br><br><a class="text">Secondly, we\'ll give you a short tour of the basics.</a>';
 				?>
 				<br>
 				<br>
@@ -310,7 +310,7 @@
 					</div>
 				</div>
 				<br>
-				<a class="text subTitle">We hope you can figure the rest out on your own, <br>but if you still have questions, feel free to email <i><a href="mailto:support.wlp@florisweb.tk?subject=My question:"">support.wlp@florisweb.tk</a></i>.</a>
+				<a class="text subTitle">We hope you can figure the rest out on your own, <br>but if you still have questions, feel free to email <i><a href="mailto:support.wlp@florisweb.dev?subject=My question:"">support.wlp@florisweb.dev</a></i>.</a>
 			</div>
 		</div>
 

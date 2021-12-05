@@ -679,16 +679,24 @@ MC.page.create.addInputRow = function() {
   let targets = document.getElementsByClassName("MC_page_create_halfHalfInputField MC_page_create_answerInput");
   for (let i = 0; i < targets.length; i++)
   {
-    targets[i].onkeyup = function () {MC.page.create.getSuggestions(this.value, 1)};
+    targets[i].onkeyup = function (_e) {handleKeyPress(this.value, _e, 1)};
   }
 
   targets = document.getElementsByClassName("MC_page_create_halfHalfInputField MC_page_create_questionInput");
   for (let i = 0; i < targets.length; i++)
   {
-    targets[i].onkeyup = function () {MC.page.create.getSuggestions(this.value, 0)};
+    targets[i].onkeyup = function (_e) {handleKeyPress(this.value, _e, 0)};
   }
 
   $(".MC_page_create_halfHalfInputField").on('focus', function () {SL.WS.selectedInput = this;})
+
+
+  function handleKeyPress(_value, _event, _index) {
+    if (!SL.WS.openState) return;
+    if (_event.key == 'Enter') return SL.WS.applyFirstSuggestion();
+    if (['ArrowRight', 'ArrowLeft', 'ArrowUp', 'ArrowDown', 'Tab', 'Shift'].includes(_event.key)) return;
+    MC.page.create.getSuggestions(_value, _index);
+  }
 }
 
 

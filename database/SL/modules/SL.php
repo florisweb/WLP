@@ -1,5 +1,4 @@
 <?php
-	$root = realpath($_SERVER["DOCUMENT_ROOT"]);
 	require_once "SL_addWord.php";
 	require_once "../modules/WLP.php";
 
@@ -77,7 +76,7 @@
 			$returnObject["subB"] = $_subB;
 
 			$wordList = $GLOBALS["DBExtension"]->getWordTree();
-			if (!$wordList) return "E3";
+			if (!$wordList || sizeof($wordList) == 0) return $returnObject;
 
 			$wordList = setWordRatio($wordList);
 			
@@ -202,14 +201,14 @@
 		public function getWordSuggestions($_subA, $_subB, $_string) {
 			//_qOrA = 0 question, = 1 = answer
 			$_string = (string)$_string;
+			$_str2Arr = explode("/", trim(strtolower($_string)));
 			$_obj = array();
 			$_obj["subA"] = (string)$_subA;
 			$_obj["subB"] = (string)$_subB;
 			
 			$returnList = array();
 			
-			$wordList = $GLOBALS["DBExtension"]->getWordTree();
-
+			$wordList = $GLOBALS["DBExtension"]->getAllWordTrees();
 			for ($i = 0; $i < sizeof($wordList); $i++) 
 			{
 				$cur = $wordList[$i];
@@ -229,7 +228,6 @@
 				}
 
 				$_str1Arr = explode("/", trim(strtolower($newCur["q"])));
-				$_str2Arr = explode("/", trim(strtolower($_string)));
 
 
 				$rightOptions = "";
@@ -242,19 +240,16 @@
 						$cur1 = $_str1Arr[$i1];
 						$cur2 = $_str2Arr[$i2];
 
-
 						similar_text($_str1Arr[$i1], $_str2Arr[$i2], $perc);
 
-						if (sizeof(explode($cur2, $cur1)) > 1 && sizeof($cur1) > 3) $perc += 30;
+						if (sizeof(explode($cur2, $cur1)) > 1 && strlen($cur1) > 3) $perc += 30;
 						
-						$score = $perc - (60 - (sizeof($cur1) * 2));
-
-		 				if ($perc > 60 - (sizeof($cur1) * 2))
+						$score = $perc;
+		 				if ($perc > 60 - (strlen($cur1) * 2))
 		 				{
 		 					if ($rightOptions !== "") $rightOptions .= "/";
 		 					$rightOptions .= $_str1Arr[$i1];
 		 				}
-
 					}
 				}
 				
@@ -270,7 +265,7 @@
 			function cmp($a, $b) {return $b["score"] > $a["score"];}			
 			usort($returnList, "cmp");
 
-			return $returnList;
+			return array_splice($returnList, 0, 5);
 		}
 	}
 

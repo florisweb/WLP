@@ -6,6 +6,7 @@
 	$_subjectB = (string)$_POST['subB'];
 
 	$smartList = $SL->getSmartList($_subjectA, $_subjectB, $_topXWorstWords);
+	if (is_string($smartList)) die($smartList);
 	for ($i = 0; $i < sizeof($smartList["wordList"]); $i++)
 	{
 		$cur = $smartList["wordList"][$i];
