@@ -19,7 +19,7 @@
 		<div id="PL_toggleButton" class="op en hide" onclick="client.action.playList.toggle()">
 			<img class="PLB_itemImg" src="images/folderIcon.png">
 			<div class="textHolder"></div>
-			<img class="directionBstton" src="images/playList_arrowRight.png">
+			<img class="directionButton" src="images/playList_arrowRight.png">
 		</div>
 
 		<div id="playlistBar" class="hide">

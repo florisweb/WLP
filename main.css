@@ -878,7 +878,7 @@ body {
 
 #functionBarHolder.extraOptions {bottom: calc(50vh - 100px)}
 
-#functionBar_normalViewHolder {display: block}
+#functionBar_normalViewHolder {display: flex}
 #functionBar_extraOptionsViewHolder {display: none}
 
 #functionBar {
